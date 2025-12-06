@@ -7,6 +7,7 @@ import { ValorInvisivelView } from "@/components/views/ValorInvisivelView";
 import { GovernancaView } from "@/components/views/GovernancaView";
 import { DateFilter } from "@/components/DateFilter";
 import { cn } from "@/lib/utils";
+import { MobileTopBar } from "@/components/MobileTopBar";
 
 type View = "dashboard" | "maturidade" | "equity" | "valor-invisivel" | "governanca";
 
@@ -51,6 +52,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Mobile top bar with theme toggle and menu */}
+      <MobileTopBar onToggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
       <Sidebar
         activeView={activeView}
         onViewChange={setActiveView}
