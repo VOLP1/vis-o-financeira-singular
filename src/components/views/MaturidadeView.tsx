@@ -67,10 +67,10 @@ export function MaturidadeView() {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {/* Score Circle */}
-        <div className="glass-card p-8 flex flex-col items-center justify-center animate-fade-in" style={{ animationDelay: "100ms" }}>
-          <div className="relative w-48 h-48">
+        <div className="glass-card p-6 md:p-8 flex flex-col items-center justify-center animate-fade-in" style={{ animationDelay: "100ms" }}>
+          <div className="relative w-40 h-40 md:w-48 md:h-48">
             {/* Background circle */}
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
               <circle
@@ -95,27 +95,27 @@ export function MaturidadeView() {
             </svg>
             {/* Score text */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-5xl font-bold text-foreground">{overallScore}</span>
-              <span className="text-lg text-muted-foreground">/100</span>
+              <span className="text-4xl md:text-5xl font-bold text-foreground">{overallScore}</span>
+              <span className="text-base md:text-lg text-muted-foreground">/100</span>
             </div>
           </div>
-          <div className="mt-6 text-center">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold">
+          <div className="mt-4 md:mt-6 text-center">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold">
               <CheckCircle className="w-5 h-5" />
               Nível Avançado
             </span>
           </div>
-          <p className="text-sm text-muted-foreground mt-4 text-center">
+          <p className="text-xs md:text-sm text-muted-foreground mt-3 md:mt-4 text-center">
             Sua empresa está no top 15% do mercado em maturidade empresarial
           </p>
         </div>
 
         {/* Radar Chart */}
-        <div className="lg:col-span-2 glass-card p-6 animate-fade-in" style={{ animationDelay: "200ms" }}>
+  <div className="md:col-span-1 lg:col-span-2 glass-card p-4 md:p-6 animate-fade-in" style={{ animationDelay: "200ms" }}>
           <h2 className="text-xl font-semibold text-foreground mb-4">
             Diagnóstico por Área
           </h2>
-          <div className="h-80">
+          <div className="h-64 md:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
                 <PolarGrid
@@ -147,7 +147,7 @@ export function MaturidadeView() {
       </div>
 
       {/* Area Breakdown */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         {radarData.map((item, index) => (
           <div
             key={item.area}
@@ -155,7 +155,7 @@ export function MaturidadeView() {
             style={{ animationDelay: `${300 + index * 100}ms` }}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-muted-foreground">{item.area}</span>
+              <span className="text-xs md:text-sm text-muted-foreground">{item.area}</span>
               <span
                 className={`text-lg font-bold ${
                   item.score >= 85
@@ -197,17 +197,17 @@ export function MaturidadeView() {
           </div>
           <Target className="w-8 h-8 text-primary" />
         </div>
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {improvements.map((item, index) => (
             <div
               key={item.area}
-              className="p-4 rounded-lg bg-accent/50 hover:bg-accent transition-colors animate-slide-in-left"
+              className="p-3 md:p-4 rounded-lg bg-accent/50 hover:bg-accent transition-colors animate-slide-in-left"
               style={{ animationDelay: `${900 + index * 100}ms` }}
             >
-              <div className="flex items-start justify-between">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="font-semibold text-foreground">{item.area}</span>
+                  <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-2">
+                    <span className="text-sm md:text-base font-semibold text-foreground">{item.area}</span>
                     <span
                       className={`text-xs font-semibold px-2 py-1 rounded-full ${
                         item.priority === "alta"
@@ -220,24 +220,24 @@ export function MaturidadeView() {
                       Prioridade {item.priority}
                     </span>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-xs md:text-sm text-muted-foreground mb-3">
                     {item.action}
                   </p>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-3 md:gap-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">Atual:</span>
-                      <span className="font-semibold text-foreground">{item.current}</span>
+                      <span className="text-xs md:text-sm text-muted-foreground">Atual:</span>
+                      <span className="text-sm md:text-base font-semibold text-foreground">{item.current}</span>
                     </div>
                     <ArrowRight className="w-4 h-4 text-primary" />
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">Potencial:</span>
-                      <span className="font-semibold text-emerald-400">{item.potential}</span>
+                      <span className="text-xs md:text-sm text-muted-foreground">Potencial:</span>
+                      <span className="text-sm md:text-base font-semibold text-emerald-400">{item.potential}</span>
                     </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="text-sm text-muted-foreground">Impacto</span>
-                  <p className="font-semibold text-primary">{item.impact}</p>
+                <div className="md:text-right">
+                  <span className="text-xs md:text-sm text-muted-foreground">Impacto</span>
+                  <p className="text-sm md:text-base font-semibold text-primary">{item.impact}</p>
                 </div>
               </div>
             </div>
