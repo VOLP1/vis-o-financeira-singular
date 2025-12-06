@@ -8,7 +8,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
 const revenueData = [
@@ -68,24 +67,24 @@ const formatCurrency = (value: number) => {
 
 export function DashboardView() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Header */}
       <div className="animate-fade-in">
-        <h1 className="text-3xl font-bold text-foreground mb-2">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
           Bom dia, Eduardo.
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-base md:text-lg text-muted-foreground">
           A saúde da <span className="text-primary font-semibold">Singular</span> está{" "}
           <span className="text-emerald-400 font-semibold">excelente</span>.
         </p>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         <KPICard
           title="Faturamento Mensal"
           value="R$ 1.050.000"
-          trend="+12,5%"
+          trend="12,5%"
           trendUp={true}
           icon={DollarSign}
           subtitle="vs. mês anterior"
@@ -94,7 +93,7 @@ export function DashboardView() {
         <KPICard
           title="Lucro Líquido"
           value="R$ 590.000"
-          trend="+8,2%"
+          trend="8,2%"
           trendUp={true}
           icon={TrendingUp}
           subtitle="Margem de 56%"
@@ -103,7 +102,7 @@ export function DashboardView() {
         <KPICard
           title="Runway"
           value="18 meses"
-          trend="+3 meses"
+          trend="3 meses"
           trendUp={true}
           icon={Timer}
           subtitle="Baseado no burn rate atual"
@@ -112,7 +111,7 @@ export function DashboardView() {
         <KPICard
           title="Valuation Atual"
           value="R$ 15,4M"
-          trend="+22%"
+          trend="22%"
           trendUp={true}
           icon={Building2}
           subtitle="Última avaliação: Nov/2024"
@@ -121,10 +120,10 @@ export function DashboardView() {
       </div>
 
       {/* Main Chart */}
-      <div className="glass-card p-6 animate-fade-in" style={{ animationDelay: "500ms" }}>
-        <div className="flex items-center justify-between mb-6">
+      <div className="glass-card p-4 md:p-6 animate-fade-in" style={{ animationDelay: "500ms" }}>
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-6 gap-3">
           <div>
-            <h2 className="text-xl font-semibold text-foreground">
+            <h2 className="text-lg md:text-xl font-semibold text-foreground">
               Receita vs Despesas
             </h2>
             <p className="text-sm text-muted-foreground">
@@ -134,15 +133,15 @@ export function DashboardView() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-sm text-muted-foreground">Receita</span>
+              <span className="text-xs md:text-sm text-muted-foreground">Receita</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-chart-2" />
-              <span className="text-sm text-muted-foreground">Despesas</span>
+              <span className="text-xs md:text-sm text-muted-foreground">Despesas</span>
             </div>
           </div>
         </div>
-        <div className="h-80">
+        <div className="h-60 md:h-80">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={revenueData}>
               <defs>
@@ -159,13 +158,13 @@ export function DashboardView() {
               <XAxis
                 dataKey="mes"
                 stroke="hsl(215, 20%, 55%)"
-                fontSize={12}
+                fontSize={11}
                 tickLine={false}
                 axisLine={false}
               />
               <YAxis
                 stroke="hsl(215, 20%, 55%)"
-                fontSize={12}
+                fontSize={11}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(value) => `${value / 1000}k`}
@@ -204,17 +203,17 @@ export function DashboardView() {
       </div>
 
       {/* Pending Actions */}
-      <div className="glass-card p-6 animate-fade-in" style={{ animationDelay: "600ms" }}>
-        <div className="flex items-center justify-between mb-6">
+      <div className="glass-card p-4 md:p-6 animate-fade-in" style={{ animationDelay: "600ms" }}>
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-6 gap-3">
           <div>
-            <h2 className="text-xl font-semibold text-foreground">
+            <h2 className="text-lg md:text-xl font-semibold text-foreground">
               Ações de Governança Pendentes
             </h2>
             <p className="text-sm text-muted-foreground">
               {pendingActions.length} itens aguardando sua aprovação
             </p>
           </div>
-          <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+          <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors text-sm">
             Ver Todas
           </button>
         </div>
@@ -222,23 +221,23 @@ export function DashboardView() {
           {pendingActions.map((action, index) => (
             <div
               key={action.id}
-              className="flex items-center justify-between p-4 rounded-lg bg-accent/50 hover:bg-accent transition-colors animate-slide-in-left"
+              className="flex flex-col md:flex-row md:items-center justify-between p-3 md:p-4 rounded-lg bg-accent/50 hover:bg-accent transition-colors animate-slide-in-left gap-3"
               style={{ animationDelay: `${700 + index * 100}ms` }}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 md:gap-4">
                 {action.status === "pending" ? (
-                  <AlertCircle className="w-5 h-5 text-warning" />
+                  <AlertCircle className="w-5 h-5 text-warning flex-shrink-0" />
                 ) : (
-                  <Clock className="w-5 h-5 text-chart-3" />
+                  <Clock className="w-5 h-5 text-chart-3 flex-shrink-0" />
                 )}
                 <div>
-                  <p className="font-medium text-foreground">{action.title}</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="font-medium text-foreground text-sm md:text-base">{action.title}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     Prazo: {action.dueDate}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 ml-8 md:ml-0">
                 <span
                   className={`text-xs font-semibold px-3 py-1 rounded-full ${
                     action.type === "urgente"
