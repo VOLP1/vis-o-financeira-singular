@@ -4,13 +4,16 @@ import { DashboardView } from "@/components/views/DashboardView";
 import { MaturidadeView } from "@/components/views/MaturidadeView";
 import { EquityView } from "@/components/views/EquityView";
 import { ValorInvisivelView } from "@/components/views/ValorInvisivelView";
+import { GovernancaView } from "@/components/views/GovernancaView";
+import { DateFilter } from "@/components/DateFilter";
 import { cn } from "@/lib/utils";
 
-type View = "dashboard" | "maturidade" | "equity" | "valor-invisivel";
+type View = "dashboard" | "maturidade" | "equity" | "valor-invisivel" | "governanca";
 
 const Index = () => {
   const [activeView, setActiveView] = useState<View>("dashboard");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [dateFilter, setDateFilter] = useState("12m");
 
   const renderView = () => {
     switch (activeView) {
@@ -22,8 +25,27 @@ const Index = () => {
         return <EquityView />;
       case "valor-invisivel":
         return <ValorInvisivelView />;
+      case "governanca":
+        return <GovernancaView />;
       default:
         return <DashboardView />;
+    }
+  };
+
+  const getViewTitle = () => {
+    switch (activeView) {
+      case "dashboard":
+        return "Visão Geral";
+      case "maturidade":
+        return "Maturidade";
+      case "equity":
+        return "Equity & Valuation";
+      case "valor-invisivel":
+        return "Valor Invisível";
+      case "governanca":
+        return "Governança";
+      default:
+        return "";
     }
   };
 
@@ -37,11 +59,20 @@ const Index = () => {
       />
       <main
         className={cn(
-          "min-h-screen transition-all duration-300 p-8",
-          isSidebarCollapsed ? "ml-20" : "ml-64"
+          "min-h-screen transition-all duration-300 p-4 md:p-8",
+          isSidebarCollapsed ? "ml-16 md:ml-20" : "ml-56 md:ml-64"
         )}
       >
-        <div className="max-w-7xl mx-auto">{renderView()}</div>
+        <div className="max-w-7xl mx-auto">
+          {/* Top Bar with Date Filter */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-3">
+            <h2 className="text-lg font-medium text-muted-foreground">
+              {getViewTitle()}
+            </h2>
+            <DateFilter value={dateFilter} onChange={setDateFilter} />
+          </div>
+          {renderView()}
+        </div>
       </main>
     </div>
   );
