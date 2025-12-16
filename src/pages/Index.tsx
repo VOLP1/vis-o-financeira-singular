@@ -42,7 +42,7 @@ const Index = () => {
       case "equity":
         return "Equity & Valuation";
       case "valor-invisivel":
-        return "Valor Invisível";
+        return "Sugestões do especialista";
       case "governanca":
         return "Governança";
       default:
