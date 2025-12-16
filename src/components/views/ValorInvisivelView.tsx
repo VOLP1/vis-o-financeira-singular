@@ -64,7 +64,7 @@ export function ValorInvisivelView() {
     <div className="space-y-6">
       {/* Header */}
       <div className="animate-fade-in">
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Valor Invisível</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Sugestões do especialista</h1>
         <p className="text-base md:text-lg text-muted-foreground">
           Oportunidades detectadas por IA que ainda não estão no seu radar
         </p>
@@ -77,7 +77,7 @@ export function ValorInvisivelView() {
             <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-primary" />
           </div>
           <div>
-            <h2 className="text-lg md:text-xl font-semibold text-foreground mb-2">Análise de Valor Oculto</h2>
+            <h2 className="text-lg md:text-xl font-semibold text-foreground mb-2">Análise do especialista</h2>
             <p className="text-sm md:text-base text-muted-foreground">
               Nossa IA identificou <span className="text-primary font-semibold">R$ 4,8M</span> em valor potencial não explorado nos seus ativos atuais. Isso representa um aumento de <span className="text-emerald-400 font-semibold">31%</span> no seu valuation atual.
             </p>

@@ -4,7 +4,7 @@ export function ValorInvisivelView() {
   return (
     <div className="space-y-6">
       <div className="animate-fade-in">
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Valor Invisível</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Sugestões do especialista</h1>
         <p className="text-base md:text-lg text-muted-foreground">
           Oportunidades detectadas por IA que ainda não estão no seu radar
         </p>

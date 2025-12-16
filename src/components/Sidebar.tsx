@@ -47,7 +47,7 @@ const menuItems = [
   },
   {
     id: "valor-invisivel" as View,
-    label: "Valor Invisível",
+    label: "Sugestões do especialista",
     icon: Sparkles,
   },
 ];
